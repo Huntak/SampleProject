@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+	<sql id="whereCondition">
+		where 	status = 1
+		<if test="id != null and id != ''">
+		and		id = #{id}
+	    </if>
+	    <if test="title != null and title != ''">
+		and 	title like '%' + #{title} + '%'
+	    </if>
+	    <if test="contents != null and contents != ''">
+		and 	contents like '%' + #{contents} + '%'
+	    </if>
+	    <if test="startDate != null and startDate != ''">
+		<![CDATA[ and 	writedate 	>= #{startDate} + ' 00:00:00' ]]>
+	    </if>
+	    <if test="endDate != null and endDate != ''">
+		<![CDATA[ and 	writedate 	<= #{endDate} + ' 23:59:59' ]]>
+	    </if>
+	    <if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+		and 	writedate 	between #{startDate} + ' 00:00:00' 	and #{endDate} + ' 23:59:59'
+	    </if>
+	</sql>
+	
+	<select id="doListMst" resultType="com.sample.qna.model.BoardVO">
+		/* board.xml -  doListMst */
+		select *
+		from (
+			select 	row_number () over (order by b.id desc) as rn,
+                	id, level, refid, title, contents, writer,
+					(
+						select 	name 
+						from 	member a 
+						where 	a.id = b.writer
+					) as writername, 
+					writedate, modifieddate, status
+			from	board b
+		    <include refid="whereCondition"/>
+		) c
+		where rn between #{pageStart} and #{pageEnd}
+	</select>
+
+	<select id="doCountMst" resultType="int">
+		/* board.xml -  doCountMst */
+		select 	count(*)
+		from	board
+		<include refid="whereCondition"/>
+	</select>
+
+	<insert id="doInsertMst">
+		/* board.xml -  doInsertMst */
+		insert into board(title, contents, writer)
+		values		(#{title}, #{contents}, #{writer})
+	</insert>
+	
+	<update id="doUpdateMst">
+		/* board.xml -  doUpdateMst */
+		update 	board
+		set 	title = #{title}, contents = #{contents}, writer = #{writer}
+		where 	id = #{id}
+	</update>
+	
+	<update id="doDeleteMst">
+		/* board.xml -  doDeleteMst */
+		update 	board
+		set 	status = 0
+		where 	id = #{id};
+	</update>
+</mapper>

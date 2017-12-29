@@ -1,0 +1,46 @@
+@CHARSET "UTF-8";
+
+#boardDetail {
+	width: 100%;
+	margin-top: 2%;
+	border-collapse: collapse;
+	font-size: 0.9em;
+}
+
+#boardDetail tr td {
+	border: 1px solid lightgray;
+	height: 25px;
+	padding: 0;
+	background: #f1f1f2;
+}
+
+#boardDetail tr td:first-child {
+    text-align: center;
+}
+
+/* #boardDetail tr td:nth-child(2) {
+    padding-left: 2%;
+} */
+
+#boardDetail tr td input[type=text] {
+	/* width: calc(100% - 4px); */
+    width: 100%;
+    height: 100%;
+    border: none;
+	background: #f1f1f2;
+	vertical-align: top;
+}
+
+#boardDetail tr td #files {
+	display: none;
+}
+
+#boardDetail tr td .fileList {
+	padding-bottom: 5px;
+    cursor: pointer;
+    border-bottom: 1px solid lightgray;
+}
+
+#boardDetail tr td .noFile {
+	display: none;
+}

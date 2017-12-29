@@ -1,0 +1,89 @@
+@CHARSET "UTF-8";
+
+#boardDiv {
+    /* display: inline-block;
+    vertical-align: top;
+	margin: auto;
+	margin-top: 5%;
+	width: 1000px; */
+}
+
+#boardDiv #boardTop {
+	position: relative;
+	height: 25px;
+}
+
+#boardDiv #boardTop #boardTopLeft {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#boardDiv #boardTop #boardTopLeft .boardCount {
+	
+}
+
+#boardDiv #boardTop #boardTopLeft #pageNum {
+	
+}
+
+#boardDiv #boardTop #boardTopRight {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+#boardDiv #boardMid {
+	width: 100%;
+	margin-top: 5%;
+	border-collapse: collapse;
+	font-size: 0.9em;
+}
+
+#boardDiv #boardMid tr:first-child {
+	background: #3f445a;
+	color: white;
+}
+
+#boardDiv #boardMid tr th {
+	border: 1px solid gray;
+	height: 25px;
+}
+
+#boardDiv #boardMid tr td {
+	border: 1px solid lightgray;
+    text-align: center;
+	height: 25px;
+	cursor: pointer;
+}
+
+#boardDiv #boardMid tr td:nth-child(3) {
+    text-align: left;
+    padding-left: 2%;
+}
+
+#boardDiv #boardMid .deleteCheckbox {
+    cursor: copy;
+}
+
+#boardDiv #boardBot {
+	border-collapse: collapse;
+	margin: auto;
+    margin-top: 2%;
+}
+
+#boardDiv #boardBot td {
+	border: 1px solid lightgray;
+	padding: 5px 10px;
+	cursor: pointer;
+}
+
+#boardDiv #boardDetail {
+	border: 0;
+    height: 540px;
+}
+
+
+.clicked {
+	background: #b5deff;
+}
